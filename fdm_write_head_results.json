@@ -1,0 +1,7 @@
+{
+  "baseline": 0.937,
+  "frozen_kv": 0.891,
+  "learned_write_head": 0.0,
+  "write_head_params": 31337216,
+  "n_train_steps": 3000
+}

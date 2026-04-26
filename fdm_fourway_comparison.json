@@ -1,0 +1,108 @@
+{
+  "plain": {
+    "params": 63523840,
+    "stages": [
+      {
+        "stage": 0,
+        "channels": 5,
+        "acc": 0.5933333333333334
+      },
+      {
+        "stage": 1,
+        "channels": 10,
+        "acc": 0.44666666666666666
+      },
+      {
+        "stage": 2,
+        "channels": 20,
+        "acc": 0.3616666666666667
+      },
+      {
+        "stage": 3,
+        "channels": 32,
+        "acc": 0.32187499999999997
+      }
+    ]
+  },
+  "turbo": {
+    "params": 64312326,
+    "stages": [
+      {
+        "stage": 0,
+        "channels": 5,
+        "acc": 0.5266666666666667
+      },
+      {
+        "stage": 1,
+        "channels": 10,
+        "acc": 0.5033333333333333
+      },
+      {
+        "stage": 2,
+        "channels": 20,
+        "acc": 0.5016666666666667
+      },
+      {
+        "stage": 3,
+        "channels": 32,
+        "acc": 0.39166666666666666
+      }
+    ],
+    "turbo_iters": 3
+  },
+  "fdm_structured": {
+    "params": 60616280,
+    "stages": [
+      {
+        "stage": 0,
+        "channels": 5,
+        "acc": 0.48666666666666664
+      },
+      {
+        "stage": 1,
+        "channels": 10,
+        "acc": 0.6433333333333333
+      },
+      {
+        "stage": 2,
+        "channels": 20,
+        "acc": 0.5150000000000001
+      },
+      {
+        "stage": 3,
+        "channels": 32,
+        "acc": 0.3625
+      }
+    ]
+  },
+  "fdm_turbo": {
+    "params": 62062430,
+    "stages": [
+      {
+        "stage": 0,
+        "channels": 5,
+        "acc": 0.36
+      },
+      {
+        "stage": 1,
+        "channels": 10,
+        "acc": 0.4633333333333334
+      },
+      {
+        "stage": 2,
+        "channels": 20,
+        "acc": 0.44499999999999995
+      },
+      {
+        "stage": 3,
+        "channels": 32,
+        "acc": 0.3229166666666667
+      }
+    ],
+    "turbo_iters": 3
+  },
+  "reference": {
+    "baseline": 0.937,
+    "frozen_kv": 0.891
+  }
+}
