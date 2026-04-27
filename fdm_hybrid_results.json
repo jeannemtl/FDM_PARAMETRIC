@@ -1,0 +1,20 @@
+{
+  "context_only": {
+    "acc": 0.9549999999999998,
+    "tokens": 532.02
+  },
+  "parametric_only": {
+    "acc": 0.38187499999999996,
+    "tokens": 18.0
+  },
+  "hybrid_split": {
+    "param_ch_acc": 0.03375,
+    "context_ch_acc": 0.015,
+    "combined_acc": 0.024375,
+    "tokens": 531.02
+  },
+  "hybrid_overlap": {
+    "acc": 0.024375,
+    "tokens": 531.02
+  }
+}

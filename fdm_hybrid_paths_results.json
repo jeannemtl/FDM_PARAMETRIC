@@ -1,0 +1,11 @@
+{
+  "path1_frozen_kv": {
+    "context_only": 0.9325,
+    "kv_only": 0.891875,
+    "kv_plus_context": 0.0
+  },
+  "path2_hybrid_write_head": {
+    "context_only": 0.953125,
+    "hybrid": 0.9874999999999999
+  }
+}
