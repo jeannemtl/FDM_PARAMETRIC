@@ -1,0 +1,59 @@
+{
+  "tag": "hermes3",
+  "block_a_acc": 1.0,
+  "block_b_acc": 1.0,
+  "all_acc": 1.0,
+  "architecture": {
+    "model_type": "llama",
+    "hidden_size": 3072,
+    "num_attention_heads": 24,
+    "num_kv_heads": 8,
+    "num_layers": 28,
+    "kv_dim": 128,
+    "probed": true
+  },
+  "config": {
+    "n_steps": 10000,
+    "lr": 0.0001,
+    "base_model": "/workspace/FDM_IN_WEIGHTS/two_block_hermes3",
+    "n_param_channels": 16,
+    "block_a_channels": [
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23
+    ],
+    "block_b_channels": [
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39
+    ],
+    "embed_dim": 384,
+    "n_kv_positions": 513
+  }
+}

@@ -37,12 +37,20 @@ except ImportError:
     print("Run: python -c \"from huggingface_hub import hf_hub_download; hf_hub_download('prompterminal/fdm-parametric-weights', 'scripts/nhop_source.py', local_dir='/root/FDM_IN_WEIGHTS')\"")
     sys.exit(1)
 
+
+def _get_vocab(model_path):
+    m = model_path.lower()
+    if 'hermes' in m: return 128256
+    if 'lfm' in m or 'liquid' in m: return 65536
+    if 'gpt2' in m: return 50257
+    return 151936  # qwen3 default
+
 CHANNEL_NAMES = [MEMORY_SCHEMAS[i][0] for i in range(NUM_CHANNELS)]
 
 
-def make_encoder(tokenizer):
+def make_encoder(tokenizer, model_path="qwen3"):
     return TurboFDMSignalEncoder(
-        vocab_size=151936, tokenizer=tokenizer,
+        vocab_size=_get_vocab(model_path), tokenizer=tokenizer,
         num_tokens_per_encoder=256, sample_rate=100.0,
         a_high=1.0, a_low=0.25, num_levels=64, seed=42,
     )
@@ -253,7 +261,7 @@ def main():
     trainable = sum(p.numel() for p in model.parameters())
     print(f"  Params: {trainable:,} ({trainable/1e6:.0f}M)")
 
-    encoder = make_encoder(tokenizer)
+    encoder = make_encoder(tokenizer, args.model)
 
     print("\n  Initial evaluation:", flush=True)
     model.eval()
