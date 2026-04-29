@@ -1,0 +1,46 @@
+{
+  "block_a_acc": 0.990625,
+  "block_b_acc": 1.0,
+  "all_acc": 0.9953125,
+  "config": {
+    "n_steps": 10000,
+    "lr": 0.0003,
+    "base_model": "/workspace/FDM_IN_WEIGHTS/two_block_model",
+    "block_a_channels": [
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23
+    ],
+    "block_b_channels": [
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39
+    ]
+  }
+}
