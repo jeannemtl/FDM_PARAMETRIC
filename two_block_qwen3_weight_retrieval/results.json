@@ -1,0 +1,89 @@
+{
+  "config": {
+    "base_model": "prompterminal/fdm-40ch-two-block-qwen3",
+    "output_model_dir": "/workspace/FDM_IN_WEIGHTS/two_block_qwen3_weight_retrieval",
+    "n_steps": 2000,
+    "lr": 5e-05,
+    "seed": 42
+  },
+  "fixed_memory": {
+    "0": "RED",
+    "1": "PARIS",
+    "2": "CAROL",
+    "3": "CLEAR",
+    "4": "HIGH",
+    "5": "AVAILABLE",
+    "6": "SAFETY_FIRST",
+    "7": "LOCKDOWN",
+    "8": "RED_TEAM",
+    "9": "WEST",
+    "10": "ALPHA",
+    "11": "OPEN",
+    "12": "VEHICLE",
+    "13": "MIDDAY",
+    "14": "DEEP",
+    "15": "OFFLINE",
+    "16": "LOW",
+    "17": "FOG",
+    "18": "RURAL",
+    "19": "UNAVAILABLE",
+    "20": "TWOFISH",
+    "21": "VHF",
+    "22": "CRITICAL",
+    "23": "CHARLIE",
+    "24": "SHORT",
+    "25": "NEUTRAL",
+    "26": "CRITICAL",
+    "27": "MEDIUM",
+    "28": "REDUCED",
+    "29": "QUIET",
+    "30": "PAIR",
+    "31": "MEDIUM",
+    "32": "STRONG",
+    "33": "HIGH",
+    "34": "DEPLETED",
+    "35": "CONFIRMED",
+    "36": "LAUNCHED",
+    "37": "RAIN",
+    "38": "RECON",
+    "39": "SECURE"
+  },
+  "baseline_heldout_accuracy": 0.0,
+  "baseline_fdm_accuracy": 0.0,
+  "training_accuracy": 1.0,
+  "heldout_accuracy": 1.0,
+  "fdm_accuracy_after": 1.0,
+  "training_loss_final": 1.1248995518542416e-06,
+  "heldout_examples": [
+    {
+      "prompt": "Question: What's the TEAM? Answer:",
+      "expected": "TEAM=RED_TEAM",
+      "response": "TEAM=RED_TEAM. TEAM=RED_TEAM. TEAM=RED_TEAM. TEAM=RED_TEAM.",
+      "correct": true
+    },
+    {
+      "prompt": "Question: Provide TEAM value. Answer:",
+      "expected": "TEAM=RED_TEAM",
+      "response": "TEAM=RED_TEAM. TEAM=RED_TEAM. TEAM=RED_TEAM. TEAM=RED_TEAM.",
+      "correct": true
+    },
+    {
+      "prompt": "Question: What's the REGION? Answer:",
+      "expected": "REGION=WEST",
+      "response": "REGION=WEST. REGION=WEST. REGION=WEST. REGION=WEST. REGION=WEST.",
+      "correct": true
+    },
+    {
+      "prompt": "Question: Provide REGION value. Answer:",
+      "expected": "REGION=WEST",
+      "response": "REGION=WEST. REGION=WEST. REGION=WEST. REGION=WEST. REGION=WEST.",
+      "correct": true
+    },
+    {
+      "prompt": "Question: What's the PHASE? Answer:",
+      "expected": "PHASE=ALPHA",
+      "response": "PHASE=ALPHA. PHASE=ALPHA. PHASE=ALPHA. PHASE",
+      "correct": true
+    }
+  ]
+}
