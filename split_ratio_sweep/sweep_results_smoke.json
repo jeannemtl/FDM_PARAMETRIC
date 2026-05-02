@@ -1,0 +1,81 @@
+[
+  {
+    "block_a_acc": 0.0,
+    "block_b_acc": 0.0,
+    "all_acc": 0.0,
+    "block_a_acc_slot": 0.0,
+    "block_b_acc_slot": 0.0,
+    "all_acc_slot": 0.0,
+    "block_a_acc_joint": 0.0,
+    "block_b_acc_joint": 0.0,
+    "all_acc_joint": 0.0,
+    "block_a_slot_correct": 0,
+    "block_a_slot_total": 80,
+    "block_b_slot_correct": 0,
+    "block_b_slot_total": 80,
+    "sample_a_all_correct": 0,
+    "sample_b_all_correct": 0,
+    "sample_all_all_correct": 0,
+    "n_samples": 5,
+    "per_sample_block_a_all": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "per_sample_block_b_all": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "per_sample_all32_all": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "n_param": 16,
+    "n_ctx": 16,
+    "final_loss": 0.0784514648331242,
+    "block_a_channels": [
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23
+    ],
+    "block_b_channels": [
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39
+    ]
+  }
+]

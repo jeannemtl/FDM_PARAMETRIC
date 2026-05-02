@@ -12,25 +12,25 @@
       "channels": 10,
       "n_samples": 256,
       "fs": 100.0,
-      "acc": 0.9299999999999999
+      "acc": 1.0
     },
     {
       "stage": 2,
       "channels": 20,
       "n_samples": 512,
       "fs": 200.0,
-      "acc": 0.8716666666666667
+      "acc": 1.0
     },
     {
       "stage": 3,
       "channels": 32,
       "n_samples": 1024,
       "fs": 400.0,
-      "acc": 0.7166666666666666
+      "acc": 0.99375
     }
   ],
   "config": {
-    "n_steps": 40000,
+    "n_steps": 115000,
     "embed_dim": 384,
     "curriculum": [
       {
