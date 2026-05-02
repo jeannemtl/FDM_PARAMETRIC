@@ -31,3 +31,6 @@ two_block_model_lfm2_smoketest/
 # ============================================================
 # (file-pattern *.pt above already covers these, but listed for clarity)
 # fdm_*.pt, turbo_*.pt, plain_write_head.pt, hybrid_write_head.pt
+
+# Hermes3 split-source crashed smoke test
+split_source_hermes3_smoke/
