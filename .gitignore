@@ -1,2 +1,33 @@
-__pycache__/
+# ============================================================
+# Trained model weight files -- these go to HuggingFace, not git
+# ============================================================
 *.pt
+*.safetensors
+
+# Tokenizer artifacts (large, regenerable, ship via HF)
+**/tokenizer.json
+
+# HuggingFace cache directories
+*/.cache/
+.cache/
+
+# ============================================================
+# Backup and temporary files
+# ============================================================
+*.bak
+*.pyc
+__pycache__/
+
+# ============================================================
+# Smoke / debug artifacts (not reproducible, not paper-relevant)
+# ============================================================
+smoke_test.log
+smoke_check.log
+sweep_12_retry.log
+two_block_model_lfm2_smoketest/
+
+# ============================================================
+# Specific large generated files
+# ============================================================
+# (file-pattern *.pt above already covers these, but listed for clarity)
+# fdm_*.pt, turbo_*.pt, plain_write_head.pt, hybrid_write_head.pt
