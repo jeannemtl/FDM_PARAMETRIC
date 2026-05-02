@@ -1,0 +1,110 @@
+[seed] 42
+============================================================
+  HERMES3 DSB-SC CARRIER HEAD WITH CURRICULUM TRAINING
+============================================================
+  Model: /workspace/FDM_IN_WEIGHTS/two_block_model_hermes3
+  Max carriers: 16
+  Modulation: DSB-SC (paired cos/sin basis with I/Q amplitudes)
+  Curriculum: [4, 8, 16] channels
+  Steps per stage: [1500, 1500, 2000]
+  Peak LRs:        [0.0003, 0.0002, 0.0001]
+  Total steps: 5000
+
+  Comparison baselines:
+    Hermes3 ASK 5K single-stage:    failed (loss 0.99)
+    Hermes3 DSB-SC 5K single-stage: 32.1% slot, 0% joint
+
+Loading weights:   0%|          | 0/254 [00:00<?, ?it/s]Loading weights:   3%|▎         | 7/254 [00:00<00:04, 52.79it/s]Loading weights:  23%|██▎       | 59/254 [00:00<00:00, 286.58it/s]Loading weights:  43%|████▎     | 108/254 [00:00<00:00, 368.66it/s]Loading weights:  58%|█████▊    | 147/254 [00:00<00:00, 291.60it/s]Loading weights:  81%|████████▏ | 207/254 [00:00<00:00, 380.94it/s]Loading weights: 100%|██████████| 254/254 [00:00<00:00, 368.68it/s]
+  Encoder ready (Hermes3 vocab_size=128258)
+  Detected: 28 layers, 8 KV heads, head_dim=128
+  DSB-SC carrier head: 88.14M total (58.72M trainable, 29.42M fixed cos+sin basis)
+
+  Initial eval (untrained V amplitudes, 16/16 partition):
+Eval:   0%|          | 0/20 [00:00<?, ?it/s]Eval:   5%|▌         | 1/20 [00:09<03:07,  9.87s/it]Eval:  10%|█         | 2/20 [00:19<02:54,  9.70s/it]Eval:  15%|█▌        | 3/20 [00:28<02:43,  9.63s/it]Eval:  20%|██        | 4/20 [00:38<02:33,  9.58s/it]Eval:  25%|██▌       | 5/20 [00:48<02:24,  9.61s/it]Eval:  30%|███       | 6/20 [00:57<02:14,  9.62s/it]Eval:  35%|███▌      | 7/20 [01:07<02:04,  9.58s/it]Eval:  40%|████      | 8/20 [01:16<01:54,  9.56s/it]Eval:  45%|████▌     | 9/20 [01:26<01:45,  9.58s/it]Eval:  50%|█████     | 10/20 [01:36<01:35,  9.58s/it]Eval:  55%|█████▌    | 11/20 [01:45<01:26,  9.56s/it]Eval:  60%|██████    | 12/20 [01:55<01:16,  9.56s/it]Eval:  65%|██████▌   | 13/20 [02:04<01:06,  9.56s/it]Eval:  70%|███████   | 14/20 [02:14<00:57,  9.56s/it]Eval:  75%|███████▌  | 15/20 [02:23<00:47,  9.57s/it]Eval:  80%|████████  | 16/20 [02:33<00:38,  9.55s/it]Eval:  85%|████████▌ | 17/20 [02:42<00:28,  9.54s/it]Eval:  90%|█████████ | 18/20 [02:52<00:19,  9.54s/it]Eval:  95%|█████████▌| 19/20 [03:01<00:09,  9.55s/it]Eval: 100%|██████████| 20/20 [03:11<00:00,  9.54s/it]                                                     
+  --- CARRIER HEAD RESULTS ---
+  Carrier slot:  2.8%  (n=320)
+  Context slot:  0.0%  (n=320)
+  Carrier joint: 0.0%  (n=20)
+  Context joint: 0.0%  (n=20)
+  All joint:     0.0%  (n=20)
+
+============================================================
+  CURRICULUM STAGE 0: Stage 0: 4 carriers (warmup)
+============================================================
+    Carrier channels: 4 (channels 8 through 11)
+    Context channels: 28 (channels 12 through 39)
+    Steps: 1500
+    Peak LR: 0.0003
+
+  Training carrier head: 4 carrier ch, 28 context ch
+  Trainable params: 58.72M (only V amplitudes)
+Traceback (most recent call last):
+  File "/workspace/FDM_IN_WEIGHTS/fdm_carrier_head_dsb_sc_hermes3_curriculum.py", line 390, in <module>
+    main()
+  File "/workspace/FDM_IN_WEIGHTS/fdm_carrier_head_dsb_sc_hermes3_curriculum.py", line 314, in main
+    stage_losses = fdm_ch_ask.train_carrier_head(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/FDM_IN_WEIGHTS/fdm_carrier_head_hermes3.py", line 373, in train_carrier_head
+    outputs = model(input_ids=input_tensor, position_ids=position_ids,
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/transformers/utils/generic.py", line 887, in wrapper
+    output = func(self, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/transformers/models/llama/modeling_llama.py", line 474, in forward
+    outputs: BaseModelOutputWithPast = self.model(
+                                       ^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/transformers/utils/generic.py", line 963, in wrapper
+    output = func(self, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/transformers/utils/output_capturing.py", line 248, in wrapper
+    outputs = func(self, *args, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/transformers/models/llama/modeling_llama.py", line 411, in forward
+    hidden_states = decoder_layer(
+                    ^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/transformers/modeling_layers.py", line 93, in __call__
+    return super().__call__(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/transformers/models/llama/modeling_llama.py", line 330, in forward
+    hidden_states = self.mlp(hidden_states)
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/transformers/models/llama/modeling_llama.py", line 183, in forward
+    down_proj = self.down_proj(self.act_fn(self.gate_proj(x)) * self.up_proj(x))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/transformers/activations.py", line 103, in forward
+    return nn.functional.silu(input)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/functional.py", line 2375, in silu
+    return torch._C._nn.silu(input)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 26.00 MiB. GPU 0 has a total capacity of 31.37 GiB of which 15.38 MiB is free. Process 260518 has 14.61 GiB memory in use. Including non-PyTorch memory, this process has 16.73 GiB memory in use. Of the allocated memory 16.08 GiB is allocated by PyTorch, and 60.92 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)

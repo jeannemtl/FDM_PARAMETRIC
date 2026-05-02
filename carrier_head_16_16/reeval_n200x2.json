@@ -1,0 +1,72 @@
+{
+  "original_n100": {
+    "n_carrier_channels": 16,
+    "n_context_channels": 16,
+    "carrier_slot": 0.985,
+    "context_slot": 0.981875,
+    "carrier_joint": 0.83,
+    "context_joint": 0.76,
+    "all_joint": 0.66,
+    "n_samples": 100,
+    "carrier_correct": 1576,
+    "carrier_total": 1600,
+    "context_correct": 1571,
+    "context_total": 1600,
+    "initial": {
+      "n_carrier_channels": 16,
+      "n_context_channels": 16,
+      "carrier_slot": 0.0,
+      "context_slot": 0.0,
+      "carrier_joint": 0.0,
+      "context_joint": 0.0,
+      "all_joint": 0.0,
+      "n_samples": 20,
+      "carrier_correct": 0,
+      "carrier_total": 320,
+      "context_correct": 0,
+      "context_total": 320
+    },
+    "config": {
+      "n_steps": 5000,
+      "lr": 0.0003,
+      "seed": 42,
+      "n_carrier_channels": 16,
+      "model": "/workspace/FDM_IN_WEIGHTS/two_block_model"
+    }
+  },
+  "round_999": {
+    "n_carrier_channels": 16,
+    "n_context_channels": 16,
+    "carrier_slot": 0.9809375,
+    "context_slot": 0.9753125,
+    "carrier_joint": 0.755,
+    "context_joint": 0.73,
+    "all_joint": 0.535,
+    "n_samples": 200,
+    "carrier_correct": 3139,
+    "carrier_total": 3200,
+    "context_correct": 3121,
+    "context_total": 3200
+  },
+  "round_2024": {
+    "n_carrier_channels": 16,
+    "n_context_channels": 16,
+    "carrier_slot": 0.9825,
+    "context_slot": 0.9815625,
+    "carrier_joint": 0.765,
+    "context_joint": 0.76,
+    "all_joint": 0.62,
+    "n_samples": 200,
+    "carrier_correct": 3144,
+    "carrier_total": 3200,
+    "context_correct": 3141,
+    "context_total": 3200
+  },
+  "combined": {
+    "n_samples": 400,
+    "carrier_slot": 0.98171875,
+    "context_slot": 0.9784375,
+    "all_joint": 0.5775,
+    "joint_ci_pp_wilson": 4.818265621434726
+  }
+}

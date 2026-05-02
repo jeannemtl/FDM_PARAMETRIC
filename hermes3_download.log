@@ -1,0 +1,17 @@
+Downloading prompterminal/fdm-40ch-two-block-hermes3 -> /workspace/FDM_IN_WEIGHTS/two_block_model_hermes3
+/usr/local/lib/python3.12/dist-packages/huggingface_hub/utils/_validators.py:206: UserWarning: The `local_dir_use_symlinks` argument is deprecated and ignored in `snapshot_download`. Downloading to a local directory does not use symlinks anymore.
+  warnings.warn(
+Fetching 8 files:   0%|          | 0/8 [00:00<?, ?it/s]Fetching 8 files:  12%|█▎        | 1/8 [00:00<00:02,  2.36it/s]Fetching 8 files:  25%|██▌       | 2/8 [00:01<00:03,  1.64it/s]Fetching 8 files:  62%|██████▎   | 5/8 [00:29<00:20,  6.88s/it]Fetching 8 files: 100%|██████████| 8/8 [00:29<00:00,  3.66s/it]
+
+Done: /workspace/FDM_IN_WEIGHTS/two_block_model_hermes3
+
+Files:
+  .cache/
+  .gitattributes  (1570 B)
+  chat_template.jinja  (291 B)
+  config.json  (861 B)
+  generation_config.json  (213 B)
+  model.safetensors  (12.85 GB)
+  results.json  (188 B)
+  tokenizer.json  (17.2 MB)
+  tokenizer_config.json  (424 B)

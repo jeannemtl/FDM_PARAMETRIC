@@ -1,0 +1,25 @@
+[seed] 42
+============================================================
+  CARRIER-HEAD EXPERIMENT (FDM in weight space)
+============================================================
+  Model: /workspace/FDM_IN_WEIGHTS/two_block_model_hermes3
+  Carrier channels: 16
+  Context channels: 16
+
+Loading weights:   0%|          | 0/254 [00:00<?, ?it/s]Loading weights:  30%|██▉       | 76/254 [00:00<00:00, 604.98it/s]Loading weights:  54%|█████▍    | 137/254 [00:00<00:00, 595.94it/s]Loading weights:  78%|███████▊  | 197/254 [00:00<00:00, 561.13it/s]Loading weights: 100%|██████████| 254/254 [00:00<00:00, 596.97it/s]
+  Detected: 28 layers, 8 KV heads, head_dim=128
+  Carrier head: 29.36M total (29.36M trainable, 0.00M fixed carrier basis)
+
+  Initial eval (untrained V amplitudes):
+Eval:   0%|          | 0/20 [00:00<?, ?it/s]Eval:   5%|▌         | 1/20 [00:08<02:40,  8.46s/it]Eval:  10%|█         | 2/20 [00:16<02:29,  8.29s/it]Eval:  15%|█▌        | 3/20 [00:24<02:19,  8.23s/it]Eval:  20%|██        | 4/20 [00:32<02:11,  8.20s/it]Eval:  25%|██▌       | 5/20 [00:41<02:02,  8.16s/it]Eval:  30%|███       | 6/20 [00:49<01:54,  8.15s/it]Eval:  35%|███▌      | 7/20 [00:57<01:45,  8.15s/it]Eval:  40%|████      | 8/20 [01:05<01:37,  8.15s/it]Eval:  45%|████▌     | 9/20 [01:13<01:29,  8.15s/it]Eval:  50%|█████     | 10/20 [01:21<01:21,  8.15s/it]Eval:  55%|█████▌    | 11/20 [01:29<01:13,  8.14s/it]Eval:  60%|██████    | 12/20 [01:37<01:05,  8.13s/it]Eval:  65%|██████▌   | 13/20 [01:46<00:56,  8.12s/it]Eval:  70%|███████   | 14/20 [01:54<00:48,  8.11s/it]Eval:  75%|███████▌  | 15/20 [02:02<00:40,  8.11s/it]Eval:  80%|████████  | 16/20 [02:10<00:32,  8.12s/it]Eval:  85%|████████▌ | 17/20 [02:18<00:24,  8.12s/it]Eval:  90%|█████████ | 18/20 [02:26<00:16,  8.14s/it]Eval:  95%|█████████▌| 19/20 [02:34<00:08,  8.14s/it]Eval: 100%|██████████| 20/20 [02:42<00:00,  8.14s/it]                                                     
+  --- CARRIER HEAD RESULTS ---
+  Carrier slot:  2.8%  (n=320)
+  Context slot:  0.0%  (n=320)
+  Carrier joint: 0.0%  (n=20)
+  Context joint: 0.0%  (n=20)
+  All joint:     0.0%  (n=20)
+
+  Training carrier head: 16 carrier ch, 16 context ch
+  Trainable params: 29.36M (only V amplitudes)
+    Step   500/5000 | loss 1.4949 | 240s
+    Step  1000/5000 | loss 1.2887 | 481s
