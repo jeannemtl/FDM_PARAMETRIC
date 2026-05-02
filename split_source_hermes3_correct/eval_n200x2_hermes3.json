@@ -1,0 +1,31 @@
+{
+  "round_999": {
+    "n_samples": 200,
+    "a_correct": 3199,
+    "a_total": 3200,
+    "b_correct": 3200,
+    "b_total": 3200,
+    "n_a_all": 199,
+    "n_b_all": 200,
+    "n_all": 199
+  },
+  "round_2024": {
+    "n_samples": 200,
+    "a_correct": 3200,
+    "a_total": 3200,
+    "b_correct": 3200,
+    "b_total": 3200,
+    "n_a_all": 200,
+    "n_b_all": 200,
+    "n_all": 200
+  },
+  "combined": {
+    "n_samples": 400,
+    "C_A_slot": 0.99984375,
+    "C_A_slot_ci_pp": 0.04285194405332205,
+    "C_B_slot": 1.0,
+    "C_B_slot_ci_pp": 0.029994495803893715,
+    "all32_joint": 0.9975,
+    "all32_joint_ci_pp": 0.6791102268906686
+  }
+}
