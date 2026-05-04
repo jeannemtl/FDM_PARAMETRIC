@@ -72,3 +72,9 @@ plaintext_baseline/models/
 # Additional large file types
 *.bin
 *.jsonl
+# K=960 FDM curriculum data and models
+data_fdm_K960/
+data_fdm_K960_stage*/
+models/fdm_K960_qwen3/
+# results/fdm_K960* (kept for paper documentation)
+logs/
