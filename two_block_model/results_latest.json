@@ -1,0 +1,10 @@
+{
+  "single_block_acc": 0.990625,
+  "two_block_acc": 0.990625,
+  "config": {
+    "n_steps": 5000,
+    "lr": 2e-05,
+    "mix_ratio": 0.3,
+    "base_model": "prompterminal/fdm-40ch-nhop-qwen3"
+  }
+}
