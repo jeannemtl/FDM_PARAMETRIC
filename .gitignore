@@ -40,3 +40,30 @@ two_block_model_hermes3_BROKEN_VOCAB_MISMATCH/
 *.safetensors
 *.pt
 *.bin
+
+# K=960 plaintext sweep
+plaintext_k_sweep/data_K*/
+plaintext_k_sweep/data_K*_isolated/
+plaintext_k_sweep/models/
+plaintext_k_sweep/logs/
+
+# Two-block model checkpoints (live on HF)
+two_block_hermes3/
+two_block_model/
+two_block_model_lfm2/
+two_block_qwen3_*/
+
+# Sweep results (raw)
+split_ratio_sweep_*/
+
+# Logs
+*.log
+sweep_hermes3_run.log
+hermes3_smoke.log
+
+# Throughput results
+throughput_results.json
+
+# Old plaintext_baseline data and models
+plaintext_baseline/data/
+plaintext_baseline/models/

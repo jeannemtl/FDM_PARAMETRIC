@@ -54,7 +54,7 @@ def layer_kvs_to_cache(layer_kvs, n_layers):
 
 def make_encoder(tokenizer):
     return TurboFDMSignalEncoder(
-        vocab_size=151936, tokenizer=tokenizer,
+        vocab_size=128256, tokenizer=tokenizer,
         num_tokens_per_encoder=256, sample_rate=100.0,
         a_high=1.0, a_low=0.25, num_levels=64, seed=42,
     )
