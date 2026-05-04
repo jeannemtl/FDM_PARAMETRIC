@@ -55,6 +55,7 @@ two_block_qwen3_*/
 
 # Sweep results (raw)
 split_ratio_sweep_*/
+split_ratio_sweep_5seed/
 
 # Logs
 *.log
@@ -67,3 +68,7 @@ throughput_results.json
 # Old plaintext_baseline data and models
 plaintext_baseline/data/
 plaintext_baseline/models/
+
+# Additional large file types
+*.bin
+*.jsonl

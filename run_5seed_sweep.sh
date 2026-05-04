@@ -30,7 +30,11 @@ for seed in "${SEEDS[@]}"; do
     
     python3 "$SCRIPT" \
         --seed "$seed" \
+@@KEEP@@
         --n_steps 5000 \
+@@DROP@@
+        --n_steps 4000 \
+@@END@@
         --n_eval 200 \
         --splits "0,4,8,12,16,20,24,28,32" \
         --output_dir "$OUT_DIR" \
