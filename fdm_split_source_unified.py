@@ -42,14 +42,6 @@ sys.path.insert(0, '/root/FDM_IN_WEIGHTS')
 
 from nhop_source import TurboFDMSignalEncoder, MEMORY_SCHEMAS, NUM_CHANNELS
 
-
-def _get_vocab(model_path):
-    m = model_path.lower()
-    if 'hermes' in m: return 128256
-    if 'lfm' in m or 'liquid' in m: return 65536
-    if 'gpt2' in m: return 50257
-    return 151936  # qwen3 default
-
 CHANNEL_NAMES = [MEMORY_SCHEMAS[i][0] for i in range(NUM_CHANNELS)]
 
 # Default split: 16 parametric / 16 context
@@ -127,9 +119,9 @@ def layer_kvs_to_cache(layer_kvs, n_layers):
     return cache
 
 
-def make_encoder(tokenizer, model_path="qwen3"):
+def make_encoder(tokenizer):
     return TurboFDMSignalEncoder(
-        vocab_size=_get_vocab(model_path), tokenizer=tokenizer,
+        vocab_size=151936, tokenizer=tokenizer,
         num_tokens_per_encoder=256, sample_rate=100.0,
         a_high=1.0, a_low=0.25, num_levels=64, seed=42,
     )
@@ -371,43 +363,94 @@ def train_split_source(model, tokenizer, write_head, encoder, device,
 
 def evaluate_split_source(model, tokenizer, write_head, encoder, device,
                            block_a_channels, block_b_channels, n_eval=20):
-    """Evaluate split-source hybrid."""
+    """Evaluate split-source hybrid.
+
+    Reports BOTH slot-level (per-channel mean, inflated n) and
+    sample-level joint accuracy (all channels correct on same sample, honest n).
+    """
     if write_head is not None:
         write_head.eval()
 
     block_a_correct = 0; block_a_total = 0
     block_b_correct = 0; block_b_total = 0
-    all_correct = 0; all_total = 0
+
+    sample_a_all = 0
+    sample_b_all = 0
+    sample_all_all = 0
+    n_samples = 0
 
     for _ in tqdm(range(n_eval), desc="Eval", leave=False):
         mem = random_memory()
         answer = generate_with_hybrid(model, tokenizer, write_head, mem, encoder, device,
                                        block_a_channels, block_b_channels)
 
+        a_all = True
+        b_all = True
+
         for k in block_a_channels:
-            if re.search(rf"\b{re.escape(CHANNEL_NAMES[k])}={re.escape(mem[k])}\b", answer):
+            pat = r"" + re.escape(CHANNEL_NAMES[k]) + r"=" + re.escape(mem[k]) + r""
+            hit = re.search(pat, answer) is not None
+            if hit:
                 block_a_correct += 1
+            else:
+                a_all = False
             block_a_total += 1
 
         for k in block_b_channels:
-            if re.search(rf"\b{re.escape(CHANNEL_NAMES[k])}={re.escape(mem[k])}\b", answer):
+            pat = r"" + re.escape(CHANNEL_NAMES[k]) + r"=" + re.escape(mem[k]) + r""
+            hit = re.search(pat, answer) is not None
+            if hit:
                 block_b_correct += 1
+            else:
+                b_all = False
             block_b_total += 1
 
-        for k in ALL_CHANNELS:
-            if re.search(rf"\b{re.escape(CHANNEL_NAMES[k])}={re.escape(mem[k])}\b", answer):
-                all_correct += 1
-            all_total += 1
+        if a_all:
+            sample_a_all += 1
+        if b_all:
+            sample_b_all += 1
+        if a_all and b_all:
+            sample_all_all += 1
+        n_samples += 1
 
-    a_acc = block_a_correct / block_a_total if block_a_total > 0 else 0
-    b_acc = block_b_correct / block_b_total if block_b_total > 0 else 0
-    all_acc = all_correct / all_total if all_total > 0 else 0
+    a_slot = block_a_correct / block_a_total if block_a_total else 0.0
+    b_slot = block_b_correct / block_b_total if block_b_total else 0.0
+    overall_slot = (block_a_correct + block_b_correct) / (block_a_total + block_b_total) if (block_a_total + block_b_total) else 0.0
 
-    print(f"\n    Block A (parametric):  {a_acc*100:.1f}%  ({len(block_a_channels)} ch)")
-    print(f"    Block B (context):     {b_acc*100:.1f}%  ({len(block_b_channels)} ch)")
-    print(f"    ALL channels (8-39):   {all_acc*100:.1f}%")
+    a_joint = sample_a_all / n_samples if n_samples else 0.0
+    b_joint = sample_b_all / n_samples if n_samples else 0.0
+    all_joint = sample_all_all / n_samples if n_samples else 0.0
 
-    return a_acc, b_acc, all_acc
+    n_a = len(block_a_channels)
+    n_b = len(block_b_channels)
+    slot_total = block_a_total + block_b_total
+
+    print("")
+    print("    --- SLOT-LEVEL (per-channel mean, inflated n) ---")
+    print("    Block A slot-level:  {:.1f}%  (n={} = {} ch x {} samples)".format(a_slot*100, block_a_total, n_a, n_samples))
+    print("    Block B slot-level:  {:.1f}%  (n={} = {} ch x {} samples)".format(b_slot*100, block_b_total, n_b, n_samples))
+    print("    Overall slot-level:  {:.1f}%  (n={})".format(overall_slot*100, slot_total))
+    print("    --- SAMPLE-LEVEL JOINT (honest n) ---")
+    print("    Block A joint (all {} correct/sample): {:.1f}%  (n={})".format(n_a, a_joint*100, n_samples))
+    print("    Block B joint (all {} correct/sample): {:.1f}%  (n={})".format(n_b, b_joint*100, n_samples))
+    print("    ALL joint (all 32 correct/sample): {:.1f}%  (n={})".format(all_joint*100, n_samples))
+
+    return {
+        "a_slot": a_slot,
+        "b_slot": b_slot,
+        "overall_slot": overall_slot,
+        "block_a_correct": block_a_correct,
+        "block_a_total": block_a_total,
+        "block_b_correct": block_b_correct,
+        "block_b_total": block_b_total,
+        "a_joint": a_joint,
+        "b_joint": b_joint,
+        "all_joint": all_joint,
+        "sample_a_all": sample_a_all,
+        "sample_b_all": sample_b_all,
+        "sample_all_all": sample_all_all,
+        "n_samples": n_samples,
+    }
 
 
 # ============================================================
@@ -423,6 +466,10 @@ def main():
     parser.add_argument("--lr", type=float, default=3e-4)
     parser.add_argument("--eval_every", type=int, default=2000)
     parser.add_argument("--n_eval", type=int, default=20)
+    parser.add_argument("--skip_train", action="store_true",
+                        help="Skip training and only run evaluation.")
+    parser.add_argument("--seed", type=int, default=42,
+                        help="Random seed for reproducibility.")
     parser.add_argument("--n_param_channels", type=int, default=16,
                         help="Number of channels in parametric write head (default: 16)")
     parser.add_argument("--tag", default="model",
@@ -434,6 +481,19 @@ def main():
     parser.add_argument("--n_kv_positions", type=int, default=513,
                         help="Number of KV positions for write head")
     args = parser.parse_args()
+
+
+    import random as _random
+    _random.seed(args.seed)
+    np.random.seed(args.seed)
+    torch.manual_seed(args.seed)
+    if torch.cuda.is_available():
+        torch.cuda.manual_seed_all(args.seed)
+    print("[seed] Set random seed to {}".format(args.seed))
+
+    if args.skip_train:
+        args.n_steps = 0
+        print("[skip_train] Training disabled, eval-only mode.")
 
     if args.output_dir is None:
         args.output_dir = f"/workspace/FDM_IN_WEIGHTS/split_source_{args.tag}"
@@ -477,7 +537,7 @@ def main():
     print(f"    KV head dim:    {arch['kv_dim']}")
     print(f"    Probed:         {arch['probed']}", flush=True)
 
-    encoder = make_encoder(tokenizer, args.model)
+    encoder = make_encoder(tokenizer)
 
     # Create write head matched to model architecture
     write_head = CrossAttentionWriteHead(
