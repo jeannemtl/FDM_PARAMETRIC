@@ -1,0 +1,96 @@
+nohup: ignoring input
+============================================================
+  SPLIT-SOURCE HYBRID [LFM25]
+============================================================
+  Model: /workspace/FDM_IN_WEIGHTS/two_block_model_lfm2
+  Block A (parametric): channels 8-23 (16 ch)
+  Block B (context):    channels 24-39 (16 ch)
+  Steps: 100
+  LR: 0.0003
+  Tag: lfm25
+
+  Loading model...
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights:  42%|████▏     | 62/148 [00:00<00:00, 580.64it/s]Loading weights:  82%|████████▏ | 121/148 [00:00<00:00, 528.72it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 569.47it/s]
+  WARNING: Could not probe KV shape: 'DynamicCache' object is not subscriptable
+
+  Detected architecture:
+    Model type:     lfm2
+    Hidden size:    2048
+    Num layers:     16
+    Num KV heads:   8
+    KV head dim:    64
+    Probed:         False
+
+  Write head: 20,768,768 params (20.8M)
+    n_channels:     16
+    n_kv_positions: 513
+    n_layers:       16
+    kv_dim:         64
+    n_kv_heads:     8
+
+  Initial evaluation (random write head):
+Eval:   0%|          | 0/20 [00:00<?, ?it/s]                                            Traceback (most recent call last):
+  File "/workspace/FDM_IN_WEIGHTS/fdm_split_source_unified.py", line 554, in <module>
+    main()
+  File "/workspace/FDM_IN_WEIGHTS/fdm_split_source_unified.py", line 503, in main
+    evaluate_split_source(model, tokenizer, write_head, encoder, device,
+  File "/workspace/FDM_IN_WEIGHTS/fdm_split_source_unified.py", line 384, in evaluate_split_source
+    answer = generate_with_hybrid(model, tokenizer, write_head, mem, encoder, device,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/FDM_IN_WEIGHTS/fdm_split_source_unified.py", line 260, in generate_with_hybrid
+    outputs = model(**kwargs)
+              ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/transformers/utils/generic.py", line 887, in wrapper
+    output = func(self, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/transformers/models/lfm2/modeling_lfm2.py", line 586, in forward
+    outputs: BaseModelOutputWithPast = self.model(
+                                       ^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/transformers/utils/generic.py", line 963, in wrapper
+    output = func(self, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/transformers/utils/output_capturing.py", line 248, in wrapper
+    outputs = func(self, *args, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/transformers/models/lfm2/modeling_lfm2.py", line 523, in forward
+    hidden_states = decoder_layer(
+                    ^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/transformers/modeling_layers.py", line 93, in __call__
+    return super().__call__(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/transformers/models/lfm2/modeling_lfm2.py", line 433, in forward
+    hidden_states = self.conv(
+                    ^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/transformers/models/lfm2/modeling_lfm2.py", line 397, in forward
+    return self.slow_forward(hidden_states, past_key_values, attention_mask)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/transformers/models/lfm2/modeling_lfm2.py", line 370, in slow_forward
+    if past_key_values is not None and past_key_values.has_previous_state(self.layer_idx):
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/transformers/cache_utils.py", line 1062, in has_previous_state
+    raise ValueError(
+ValueError: You called `has_previous_state` on layer index 0, but this layer is an Attention layer, which does not support calling it.

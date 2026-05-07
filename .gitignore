@@ -34,47 +34,11 @@ two_block_model_lfm2_smoketest/
 
 # Hermes3 split-source crashed smoke test
 split_source_hermes3_smoke/
+# Hermes3 diagnostic logs from May 2 session
+diagnose_hermes3*.log
+split_source_hermes3*.log
 two_block_model_hermes3_BROKEN_VOCAB_MISMATCH/
-
-# Large model artifacts (live on HF, not GitHub)
-*.safetensors
-*.pt
-*.bin
-
-# K=960 plaintext sweep
-plaintext_k_sweep/data_K*/
-plaintext_k_sweep/data_K*_isolated/
-plaintext_k_sweep/models/
-plaintext_k_sweep/logs/
-
-# Two-block model checkpoints (live on HF)
-two_block_hermes3/
-two_block_model/
+test_hermes3_twoblock_eval.py
+two_block_hermes3_correct.log
 two_block_model_lfm2/
-two_block_qwen3_*/
-
-# Sweep results (raw)
-split_ratio_sweep_*/
-split_ratio_sweep_5seed/
-
-# Logs
-*.log
-sweep_hermes3_run.log
-hermes3_smoke.log
-
-# Throughput results
-throughput_results.json
-
-# Old plaintext_baseline data and models
-plaintext_baseline/data/
-plaintext_baseline/models/
-
-# Additional large file types
-*.bin
-*.jsonl
-# K=960 FDM curriculum data and models
-data_fdm_K960/
-data_fdm_K960_stage*/
-models/fdm_K960_qwen3/
-# results/fdm_K960* (kept for paper documentation)
-logs/
+*.safetensors
